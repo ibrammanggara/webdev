@@ -1,5 +1,5 @@
 <aside id="sidebar" class="fixed top-6 left-6 w-64 h-[calc(100vh-3rem)] bg-slate-800 text-slate-200 rounded-2xl shadow-lg transition-transform duration-300 ease-in-out -translate-x-72 z-30">
-    <!-- USER HEADER (TAMBAHAN AJA, MENU TIDAK DIUBAH) -->
+    <!-- USER HEADER -->
     <div class="flex flex-col items-center px-6 py-8 border-b border-slate-700">
         <div class="w-20 h-20 rounded-full bg-indigo-600 text-white flex items-center justify-center text-3xl font-semibold">
             {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
@@ -14,7 +14,7 @@
         </p>
     </div>
 
-    <!-- MENU (TETAP PERSIS PUNYAMU) -->
+    <!-- MENU -->
     <nav class="flex-1 py-6 space-y-1">
         <!-- Dashboard -->
         <a href="/dashboard" class="group flex items-center gap-3 mx-3 px-4 py-2.5 rounded-lg text-sm transition-all {{ request()->is('dashboard') ? 'bg-indigo-500/10 text-indigo-400' : 'text-slate-300 hover:bg-slate-700 hover:text-white' }}">
