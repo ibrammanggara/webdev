@@ -1,0 +1,72 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
+
+class UserController extends Controller
+{
+    public function index()
+    {
+        $users = User::latest()->get();
+        $totalUsers = User::count();
+
+        // ambil user per hari (7 hari terakhir)
+        $usersPerDay = User::select(
+                DB::raw('DATE(created_at) as date'),
+                DB::raw('COUNT(*) as total')
+            )
+            ->where('created_at', '>=', Carbon::now()->subDays(6))
+            ->groupBy('date')
+            ->orderBy('date')
+            ->get();
+
+        // bikin format array buat chart
+        $chartLabels = [];
+        $chartData   = [];
+
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::now()->subDays($i)->format('Y-m-d');
+            $label = Carbon::now()->subDays($i)->translatedFormat('D'); // Sen, Sel, Rab
+
+            $chartLabels[] = $label;
+
+            $found = $usersPerDay->firstWhere('date', $date);
+            $chartData[] = $found ? $found->total : 0;
+        }
+
+        return view('backend.home.index', compact(
+            'users',
+            'totalUsers',
+            'chartLabels',
+            'chartData'
+        ));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|unique:users,name',
+            'password' => 'required|min:6'
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'password' => Hash::make($request->password),
+        ]);
+
+        return redirect()->to(url()->previous() . '#users')
+            ->with('success', 'User berhasil ditambahkan');
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->to(url()->previous() . '#users')
+            ->with('success', 'User berhasil dihapus');
+    }
+}
