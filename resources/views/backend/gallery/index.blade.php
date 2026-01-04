@@ -35,7 +35,7 @@
                     @forelse($galleries as $gallery)
                         <tr class="border-t border-slate-100 hover:bg-slate-50 transition">
                             <td class="p-4">
-                                {{ $loop->iteration }}
+                                {{ $galleries->firstItem() + $loop->index }}
                             </td>
 
                             <td class="p-4">
@@ -96,5 +96,9 @@
                 </tbody>
             </table>
         </div>
+    </div>
+    
+    <div class="p-4">
+      {{ $galleries->links() }}
     </div>
 @endsection

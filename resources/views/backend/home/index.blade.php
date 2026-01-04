@@ -101,7 +101,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-sm text-gray-500">Galeri</p>
-                    <h2 class="text-3xl font-bold text-gray-800">32</h2>
+                    <h2 class="text-3xl font-bold text-gray-800">{{ $totalGalleries }}</h2>
                 </div>
                 <div class="bg-purple-100 text-purple-600 p-3 rounded-lg">
                     <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -229,6 +229,14 @@
                         data: @json($chartData),
                         borderColor: '#4f46e5',
                         backgroundColor: 'rgba(79,70,229,0.1)',
+                        tension: 0.4,
+                        fill: true
+                    },
+                    {
+                        label: 'Galeri',
+                        data: @json($galleryChartData),
+                        borderColor: '#9333ea',
+                        backgroundColor: 'rgba(147,51,234,0.1)',
                         tension: 0.4,
                         fill: true
                     }
