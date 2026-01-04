@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Models\Gallery;
 
 class UserController extends Controller
 {
@@ -14,6 +15,7 @@ class UserController extends Controller
     {
         $users = User::latest()->get();
         $totalUsers = User::count();
+        $totalGalleries = Gallery::count();
 
         // ambil user per hari (7 hari terakhir)
         $usersPerDay = User::select(
@@ -39,11 +41,30 @@ class UserController extends Controller
             $chartData[] = $found ? $found->total : 0;
         }
 
+        $galleriesPerDay = Gallery::select(
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('COUNT(*) as total')
+        )
+        ->where('created_at', '>=', Carbon::now()->subDays(6))
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
+
+        $galleryChartData = [];
+
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::now()->subDays($i)->format('Y-m-d');
+            $found = $galleriesPerDay->firstWhere('date', $date);
+            $galleryChartData[] = $found ? $found->total : 0;
+        }
+
         return view('backend.home.index', compact(
             'users',
             'totalUsers',
+            'totalGalleries',
             'chartLabels',
-            'chartData'
+            'chartData',
+            'galleryChartData'
         ));
     }
 
