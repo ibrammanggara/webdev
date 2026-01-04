@@ -28,12 +28,10 @@
     </div>
 
     <div class="bg-white rounded-2xl shadow overflow-hidden">
-        <!-- IMAGE -->
         <div class="relative">
             <img src="{{ asset('storage/' . $gallery->image) }}"
                  class="w-full max-h-[420px] object-cover">
 
-            <!-- STATUS BADGE -->
             <div class="absolute top-4 right-4">
                 @if($gallery->is_active)
                     <span class="px-4 py-1.5 text-sm rounded-full bg-green-100 text-green-600 shadow">
@@ -47,10 +45,8 @@
             </div>
         </div>
 
-        <!-- CONTENT -->
         <div class="p-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- INFO -->
                 <div>
                     <h2 class="text-lg font-semibold text-gray-800 mb-2">
                         Informasi Galeri
@@ -80,7 +76,6 @@
                     </div>
                 </div>
 
-                <!-- ACTION -->
                 <div class="flex flex-col justify-between">
                     <div class="bg-slate-50 rounded-xl p-4 text-sm text-gray-600">
                         <p>

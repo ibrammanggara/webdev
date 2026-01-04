@@ -20,7 +20,6 @@
               class="grid grid-cols-1 md:grid-cols-2 gap-6">
             @csrf
 
-            <!-- LEFT: IMAGE UPLOAD -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
                     Gambar Galeri
@@ -62,7 +61,6 @@
                 @enderror
             </div>
 
-            <!-- RIGHT: FORM -->
             <div class="flex flex-col justify-between">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -83,7 +81,6 @@
                     @enderror
                 </div>
 
-                <!-- STATUS -->
                 <div class="flex items-center gap-3 mt-4">
                     <input type="checkbox"
                           name="is_active"

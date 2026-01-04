@@ -21,7 +21,6 @@
             @csrf
             @method('PUT')
 
-            <!-- LEFT: IMAGE -->
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-2">
                     Gambar Galeri
@@ -32,12 +31,10 @@
                            hover:bg-slate-50 transition
                            {{ $errors->has('image') ? 'border-rose-400' : 'border-slate-300' }}">
 
-                    <!-- OLD IMAGE -->
                     <img id="imagePreview"
                          src="{{ asset('storage/' . $gallery->image) }}"
                          class="absolute inset-0 w-full h-full object-cover rounded-xl">
 
-                    <!-- OVERLAY -->
                     <div id="uploadOverlay"
                          class="absolute inset-0 bg-black/40 text-white flex flex-col items-center justify-center gap-2
                                 opacity-0 hover:opacity-100 transition">
@@ -65,7 +62,6 @@
                 @enderror
             </div>
 
-            <!-- RIGHT: FORM -->
             <div class="flex flex-col justify-between">
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -86,7 +82,6 @@
                     @enderror
                 </div>
 
-                <!-- STATUS -->
                 <div class="flex items-center gap-3 mt-4">
                     <input type="checkbox"
                           name="is_active"
