@@ -148,10 +148,10 @@
         <div class="bg-white rounded-xl shadow overflow-hidden">
             <!-- FORM -->
             <div class="px-6 py-4 bg-slate-50">
-                <form action="{{ route('users.store') }}" method="POST" class="flex flex-col lg:flex-row gap-4 items-end">
+                <form action="{{ route('users.store') }}" method="POST" class="flex flex-row flex-wrap md:flex-nowrap gap-4 items-end">
                     @csrf
                     <!-- Nama -->
-                    <div class="flex-1">
+                    <div class="w-full md:flex-1">
                         <label class="text-sm text-gray-600 mb-1 block">
                             Nama User
                         </label>
@@ -159,7 +159,7 @@
                     </div>
 
                     <!-- Password -->
-                    <div class="flex-1">
+                    <div class="w-full md:flex-1">
                         <label class="text-sm text-gray-600 mb-1 block">
                             Password
                         </label>
@@ -167,9 +167,11 @@
                     </div>
 
                     <!-- Button -->
-                    <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg transition shadow-sm cursor-pointer">
-                        Tambah User
-                    </button>
+                    <div class="w-full md:w-auto">
+                        <button type="submit" class="w-full md:w-auto bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg transition shadow-sm cursor-pointer">
+                            Tambah User
+                        </button>
+                    </div>
                 </form>
             </div>
 
