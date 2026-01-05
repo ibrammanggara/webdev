@@ -70,7 +70,7 @@
                     <input type="text"
                            name="title"
                            value="{{ old('title') }}"
-                           placeholder="Contoh: Kegiatan Upacara"
+                           placeholder="Masukkan judul galeri"
                            class="w-full rounded-lg px-4 py-2 border border-slate-300
                                   focus:outline-none focus:ring-2 focus:ring-indigo-500">
 

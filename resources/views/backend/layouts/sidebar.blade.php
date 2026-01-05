@@ -41,10 +41,11 @@
         </a>
 
         <!-- Aktivitas -->
-        <a href="#"
-            class="group flex items-center gap-3 mx-3 px-4 py-2.5 rounded-lg text-sm
-            text-slate-300 hover:bg-slate-700 hover:text-white transition-all">
-            <svg class="w-5 h-5 text-slate-400 group-hover:text-white"
+        <a href="{{ route('activity.index') }}"
+        class="group flex items-center gap-3 mx-3 px-4 py-2.5 rounded-lg text-sm transition-all
+        {{ request()->is('activity*') ? 'bg-indigo-500/10 text-indigo-400' : 'text-slate-300 hover:bg-slate-700 hover:text-white' }}">
+            <svg class="w-5 h-5 shrink-0
+                {{ request()->is('activity*') ? 'text-indigo-400' : 'text-slate-400 group-hover:text-white' }}"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                 stroke-width="1.5" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round"
