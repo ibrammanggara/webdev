@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\ActivityController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,4 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::resource('users', UserController::class)->only(['store', 'destroy']);
     Route::resource('gallery', GalleryController::class);
+    Route::resource('activity', ActivityController::class);
+    Route::delete('activity-image/{image}', [ActivityController::class, 'destroyImage'])
+        ->name('activity.image.destroy');
 });
