@@ -30,7 +30,8 @@
     <div class="bg-white rounded-2xl shadow overflow-hidden">
         <div class="relative">
             <img src="{{ asset('storage/' . $gallery->image) }}"
-                 class="w-full max-h-[420px] object-cover">
+                 onclick="openLightbox(this.src)"
+                 class="w-full max-h-[420px] object-cover cursor-pointer hover:opacity-90 transition">
 
             <div class="absolute top-4 right-4">
                 @if($gallery->is_active)

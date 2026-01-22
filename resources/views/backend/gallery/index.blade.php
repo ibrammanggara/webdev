@@ -40,8 +40,9 @@
 
                             <td class="p-4">
                                 <img
+                                    onclick="openLightbox(this.src)"
                                     src="{{ asset('storage/' . $gallery->image) }}"
-                                    class="w-20 h-14 object-cover"
+                                    class="w-20 h-14 object-cover cursor-pointer hover:opacity-90 transition"
                                     alt="Gallery Image">
                             </td>
 
