@@ -42,7 +42,7 @@
                 <label class="block text-sm font-medium text-slate-600 mb-1">
                     Username
                 </label>
-                <input type="text" name="name" value="{{ old('name') }}" placeholder="Masukkan username" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition @error('name') border-rose-500 @enderror" required>
+                <input type="text" name="name" value="{{ old('name') }}" placeholder="Masukkan username" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition @error('name') @enderror" required>
                 @error('name')
                     <p class="text-xs text-rose-600 mt-1">
                         {{ $message }}
@@ -55,7 +55,7 @@
                 <label class="block text-sm font-medium text-slate-600 mb-1">
                     Password
                 </label>
-                <input type="password" name="password" placeholder="Masukkan password" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition @error('password') border-rose-500 @enderror" required>
+                <input type="password" name="password" placeholder="Masukkan password" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition @error('password') @enderror" required>
                 @error('password')
                     <p class="text-xs text-rose-600 mt-1">
                         {{ $message }}

@@ -34,7 +34,7 @@
 
             {{-- GLOBAL IMAGE LIGHTBOX --}}
             <div id="imageLightbox"
-                class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center">
+                class="fixed inset-0 bg-black/80 hidden z-50 items-center justify-center">
 
                 <button onclick="closeLightbox()"
                         class="absolute top-6 right-6 text-white text-3xl font-bold">
@@ -54,7 +54,9 @@
             const img = document.getElementById('lightboxImage');
 
             img.src = src;
+
             modal.classList.remove('hidden');
+            modal.classList.add('flex');
         }
 
         function closeLightbox() {
@@ -62,7 +64,9 @@
             const img = document.getElementById('lightboxImage');
 
             img.src = '';
+
             modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
 
         // Klik background untuk close
