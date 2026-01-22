@@ -34,7 +34,7 @@
         @if($product->cover_image)
             <div class="relative">
                 <img src="{{ asset('storage/'.$product->cover_image) }}" onclick="openLightbox(this.src)"
-                     class="w-full max-h-[420px] object-cover cursor-pointer hover:opacity-90 transition">
+                     class="w-full max-h-105 object-cover cursor-pointer hover:opacity-90 transition">
 
                 <!-- STATUS -->
                 <div class="absolute top-4 right-4">

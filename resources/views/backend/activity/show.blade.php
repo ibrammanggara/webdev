@@ -35,7 +35,7 @@
             <div class="relative">
                 <img src="{{ asset('storage/'.$activity->cover_image) }}"
                      onclick="openLightbox(this.src)"
-                     class="w-full max-h-[420px] object-cover cursor-pointer hover:opacity-90 transition">
+                     class="w-full max-h-105 object-cover cursor-pointer hover:opacity-90 transition">
 
                 <!-- STATUS -->
                 <div class="absolute top-4 right-4">
@@ -93,7 +93,7 @@
                                 <img src="{{ asset('storage/'.$img->image) }}"
                                      onclick="openLightbox(this.src)"
                                      class="w-full h-36 object-cover rounded-lg border
-                                            cursor-pointer hover:opacity-90 transition cursor-pointer hover:opacity-90 transition">
+                                            cursor-pointer hover:opacity-90 transition">
                             </div>
                         @endforeach
                     </div>

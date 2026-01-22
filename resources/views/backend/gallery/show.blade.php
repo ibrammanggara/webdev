@@ -31,7 +31,7 @@
         <div class="relative">
             <img src="{{ asset('storage/' . $gallery->image) }}"
                  onclick="openLightbox(this.src)"
-                 class="w-full max-h-[420px] object-cover cursor-pointer hover:opacity-90 transition">
+                 class="w-full max-h-105 object-cover cursor-pointer hover:opacity-90 transition">
 
             <div class="absolute top-4 right-4">
                 @if($gallery->is_active)
