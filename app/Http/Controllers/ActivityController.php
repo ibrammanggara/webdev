@@ -7,6 +7,7 @@ use App\Models\ActivityImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use App\Services\SlugService;
 
 class ActivityController extends Controller
 {
@@ -42,7 +43,7 @@ class ActivityController extends Controller
 
         $activity = Activity::create([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'slug' => SlugService::generate($request->title, Activity::class),
             'cover_image' => $coverPath,
             'content' => $request->content,
             'activity_date' => $request->activity_date,
@@ -103,7 +104,7 @@ class ActivityController extends Controller
 
         $activity->update([
             'title' => $request->title,
-            'slug' => Str::slug($request->title),
+            'slug' => SlugService::generate($request->title, Activity::class, $activity->id),
             'content' => $request->content,
             'activity_date' => $request->activity_date,
             'location' => $request->location,
@@ -119,6 +120,17 @@ class ActivityController extends Controller
                     'activity_id' => $activity->id,
                     'image' => $path,
                 ]);
+            }
+        }
+
+        if ($request->filled('deleted_images')) {
+            $ids = explode(',', $request->deleted_images);
+
+            $images = ActivityImage::whereIn('id', $ids)->get();
+
+            foreach ($images as $img) {
+                Storage::disk('public')->delete($img->image);
+                $img->delete();
             }
         }
 

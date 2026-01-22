@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\ProductController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,4 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('activity', ActivityController::class);
     Route::delete('activity-image/{image}', [ActivityController::class, 'destroyImage'])
         ->name('activity.image.destroy');
+    Route::resource('product', ProductController::class);
+    Route::delete('product-image/{image}', [ProductController::class, 'destroyImage'])
+        ->name('product.image.destroy');
 });

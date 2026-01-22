@@ -31,9 +31,46 @@
                     @yield('content')
                 </main>
             </div>
+
+            {{-- GLOBAL IMAGE LIGHTBOX --}}
+            <div id="imageLightbox"
+                class="fixed inset-0 bg-black/80 hidden z-50 flex items-center justify-center">
+
+                <button onclick="closeLightbox()"
+                        class="absolute top-6 right-6 text-white text-3xl font-bold">
+                    ✕
+                </button>
+
+                <img id="lightboxImage"
+                    class="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-lg">
+            </div>
         </div>
     </div>
     @include('backend.layouts.script')
     @stack('scripts')
+    <script>
+        function openLightbox(src) {
+            const modal = document.getElementById('imageLightbox');
+            const img = document.getElementById('lightboxImage');
+
+            img.src = src;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('imageLightbox');
+            const img = document.getElementById('lightboxImage');
+
+            img.src = '';
+            modal.classList.add('hidden');
+        }
+
+        // Klik background untuk close
+        document.getElementById('imageLightbox')?.addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>

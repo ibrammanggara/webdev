@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Models\Gallery;
+use App\Models\Activity;
+use App\Models\Product;
 
 class UserController extends Controller
 {
@@ -16,6 +18,8 @@ class UserController extends Controller
         $users = User::latest()->get();
         $totalUsers = User::count();
         $totalGalleries = Gallery::count();
+        $totalActivities = Activity::count();
+        $totalProducts = Product::count();
 
         // ambil user per hari (7 hari terakhir)
         $usersPerDay = User::select(
@@ -58,13 +62,51 @@ class UserController extends Controller
             $galleryChartData[] = $found ? $found->total : 0;
         }
 
+        $activitiesPerDay = Activity::select(
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('COUNT(*) as total')
+        )
+        ->where('created_at', '>=', Carbon::now()->subDays(6))
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
+
+        $activityChartData = [];
+
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::now()->subDays($i)->format('Y-m-d');
+            $found = $activitiesPerDay->firstWhere('date', $date);
+            $activityChartData[] = $found ? $found->total : 0;
+        }
+
+        $productsPerDay = Product::select(
+            DB::raw('DATE(created_at) as date'),
+            DB::raw('COUNT(*) as total')
+        )
+        ->where('created_at', '>=', Carbon::now()->subDays(6))
+        ->groupBy('date')
+        ->orderBy('date')
+        ->get();
+
+        $productChartData = [];
+
+        for ($i = 6; $i >= 0; $i--) {
+            $date = Carbon::now()->subDays($i)->format('Y-m-d');
+            $found = $productsPerDay->firstWhere('date', $date);
+            $productChartData[] = $found ? $found->total : 0;
+        }
+
         return view('backend.home.index', compact(
             'users',
             'totalUsers',
             'totalGalleries',
+            'totalActivities',
+            'totalProducts',
             'chartLabels',
             'chartData',
-            'galleryChartData'
+            'galleryChartData',
+            'activityChartData',
+            'productChartData'
         ));
     }
 
