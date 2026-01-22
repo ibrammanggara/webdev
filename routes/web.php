@@ -15,7 +15,7 @@ Route::get('login', [LoginController::class, 'view'])->name('login');
 Route::post('login-post', [LoginController::class, 'login'])->name('login-post');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'nocache'])->group(function () {
     Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
     Route::resource('users', UserController::class)->only(['store', 'destroy']);
     Route::resource('gallery', GalleryController::class);
