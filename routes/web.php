@@ -4,12 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ActivityController;
+use App\Http\Controllers\Frontend\HomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('login', [LoginController::class, 'view'])->name('login');
 Route::post('login-post', [LoginController::class, 'login'])->name('login-post');
